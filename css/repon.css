@@ -1,0 +1,24 @@
+@media(min-width:992px)
+{
+    .header-top .header-top-left
+    {
+        display: block;
+    }
+    .header-top .login
+    {
+        display: block;
+    }
+    .navbar-collapse
+    {
+        display: block;
+    }
+    .header-bottom .logo button
+    {
+        display: none;
+    }
+    .menu ul 
+    {
+        display: f;
+    }
+    
+}
