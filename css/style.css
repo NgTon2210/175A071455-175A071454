@@ -113,13 +113,40 @@ header .search
 header .menu ul 
 {
     display: flex;
+    align-items: center;
+    justify-content: space-between;
+
 }
 header .menu ul li
 {
     list-style: none;
     display: block;
     padding:10px 0px;
+    font-family: "Helvetica", sans-serif;
+    text-align: center;
+    position: relative;
+    cursor: pointer;
+    transition: color .15s linear;
 }
+ul li:before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: auto;
+    height: 2px;
+    background:  #9D9D9D;;
+    width: 0;
+    transition: width 0.25s linear;
+  }
+  ul li:hover {
+    color: #ffa400;
+  }
+  ul li:hover:before {
+    width: 100%;
+    left: 0;
+    right: auto;
+  }
 header .menu ul li a
 {
     display: block;
@@ -173,7 +200,7 @@ header .slide img
 .content-main h3 
 {
    margin: 30px 0px;
-   color: rgb(111, 111, 246);
+   color: rgb(73, 73, 112);
 }
 .latest-new
 {
@@ -186,6 +213,7 @@ header .slide img
 .latest-new a p
 {
     margin: 10px 0px;
+    color: rgb(73, 73, 112);
    
 }
 .latest-new .link
@@ -213,4 +241,25 @@ header .slide img
     font-weight: bold;
     border-radius: 50%;
     padding: 15px 15px;
+}
+
+/*footer*/
+footer .footer-top
+{
+    margin-top: 20px;
+    background: #9D9D9D;
+    padding: 10px 0px;
+
+}
+footer .footer-top h2
+{
+    color: #343451;
+    font-size: 24px;
+}
+footer .footer-bottom
+{
+    background: #b8b6b6;
+    padding: 25px 0px;
+    color:black;
+    font-size: 13px;
 }
