@@ -1,5 +1,13 @@
 @media(min-width:992px)
 {
+    .logo
+    {
+        display: block;
+    }
+    .logo2
+    {
+        display: none;
+    }
     .header-top .header-top-left
     {
         display: block;
@@ -8,17 +16,31 @@
     {
         display: block;
     }
-    .navbar-collapse
+   #nav
+   {
+       display: none;
+   }
+    .slide
     {
         display: block;
     }
-    .header-bottom .logo button
+    header .menu ul 
+    {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    }      
+    main .menu-mid
+    {
+        display: flex;
+        margin-top: 20px;
+        justify-content: space-between;
+        border-bottom: 1px solid #eeeeee;
+    }
+    .mn 
     {
         display: none;
     }
-    .menu ul 
-    {
-        display: f;
-    }
+
     
 }
