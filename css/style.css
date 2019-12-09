@@ -112,10 +112,7 @@ header .search
 }
 header .menu ul 
 {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
+   
 }
 header .menu ul li
 {
@@ -173,12 +170,9 @@ header .slide img
 {
     height: 486px;
 }
- main .menu-mid
+ .menu-mid
  {
-     display: flex;
-     margin-top: 20px;
-     justify-content: space-between;
-     border-bottom: 1px solid #eeeeee;
+     display: block;
  }
  .contain-1
 {
@@ -262,4 +256,32 @@ footer .footer-bottom
     padding: 25px 0px;
     color:black;
     font-size: 13px;
+}
+.menu-mid
+{
+    display: none;
+}
+.slide
+{
+    display: none;
+}
+.logo1
+{
+    display: none;
+}
+.logo2
+{
+    display: ;
+}
+#btn_menu
+{
+    display: block;
+}
+.menu_rp
+{
+    display: block;
+}
+.togg_rp
+{
+    display: none;
 }
