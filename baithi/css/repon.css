@@ -1,0 +1,49 @@
+@media(min-width:992px)
+{
+    .header-top .header-top-left
+    {
+        display: block;
+    }
+    .header-top .login
+    {
+        display: block;
+    }
+    .navbar-collapse
+    {
+        display: block;
+    }
+    .header-bottom .logo button
+    {
+        display: none;
+    }
+    main .menu-mid
+ {
+     display: flex;
+     margin-top: 20px;
+     justify-content: space-between;
+     border-bottom: 1px solid #eeeeee;
+ }
+ .slide
+ {
+     display: block;
+ }
+ .logo1
+ {
+     display: block;
+ }
+ .logo2
+ {
+     display: none;
+ }
+    #btn_menu
+    {
+        display: none;
+    }
+    header .menu ul 
+    {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+    }
+}
