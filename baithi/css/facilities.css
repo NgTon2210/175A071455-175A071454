@@ -136,10 +136,10 @@ header ul li:before {
     width: 0;
     transition: width 0.25s linear;
   }
-  header ul li:hover {
+ header ul li:hover {
     color: #ffa400;
   }
-  header ul li:hover:before {
+header ul li:hover:before {
     width: 100%;
     left: 0;
     right: auto;
@@ -191,11 +191,11 @@ header .slide img
 }
 
 /*css main*/
-main .news-notification
+main .introduce
 {
     padding: 10px 5px;
 }
-main .news-notification .location
+main .introduce .location
 {
     padding: 12px 0px;
     background: #9D9D9D;
@@ -203,58 +203,48 @@ main .news-notification .location
     color: white;
     margin-bottom: 20px;
 }
-main .news-notification .main-n-noti
+main .introduce .main-introduce
 {
     padding: 10px 0px;
 }
-main .news-notification h3.left
+main .introduce h3.left
 {
     color: #343451;
     font-size: 23px;
 }
-main .news-notification .menu ul li
+main .introduce .menu ul li
 {
     list-style: none;
     border-bottom: 1px solid black;
     margin-top: 15px;
     padding: 5px 0px;
 }
-main .news-notification .menu ul li a
+main .introduce .menu ul li a
 {
     text-decoration: none;
 }
-main .news-notification .list-news h3
-{
+main .introduce .content-introduce h3 {
     color: #343451;
+    border-bottom: 1px solid black;
+    padding: 0px 0px 10px 0px;
 }
-main .news-notification .list-news .news1 {
-    margin-top: 15px;
-    display: flex;
-    border-bottom: 1px solid gray;
-}
-main .news-notification .list-news .news1 .title-news
+main .introduce .content-introduce .img-csvc
 {
-    margin-left: 15px;
+    padding: 15px 0px;
 }
-main .news-notification .list-news .news1 .title-news h5 a
+.img-csvc p.p-title
 {
-    color: black;
-    font-size: 22px;
-    text-decoration: none;
+    font-size: 20px;
+    font-weight: bold;
 }
-
-#pagination ul{
-	float:right;
-	margin-top:20px;}
-#pagination ul li a.page-link{
-	color:#333333;}			
-#pagination ul li a.page-link:hover{
-	background:#EB1F27;
-	color:#FFF;}
-#pagination ul li.active a{
-	background:#EB1F27;
-	border-color:#dee2e6;
-	color:#FFF;}
+.img-csvc p.p1
+{
+    padding-top: 30px;
+}
+.img-csvc p.p1 span
+{
+    font-weight: bold;
+}
 /*footer*/
 footer .footer-top
 {

@@ -25,7 +25,7 @@ header .header-top a:hover
 {
     color: black;
 }
-header .header-top i:hover
+header .header-top a.icon:hover
 {
     transition: 0.4s;
     width: 25px;

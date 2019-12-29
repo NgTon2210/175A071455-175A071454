@@ -1,0 +1,28 @@
+.modal
+{
+    margin-top:50px;
+    
+}
+.modal h4
+{
+    font-weight: bold;
+    color: rgb(110, 110, 109);
+    margin: auto;
+}
+.modal-header{
+    background-color: rgb(231, 222, 240);
+}
+.modal-body{
+    padding: 30px 100px ;
+}
+.modal-body label{
+    color: #9d9d9d;
+    font-size: 16px;
+}
+.modal-body input
+{
+    border-radius: 5px;
+}
+.modal-body .cmt, .pass{
+    padding: 7px 0px;
+}

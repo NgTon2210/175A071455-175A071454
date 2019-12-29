@@ -1,0 +1,77 @@
+*
+{
+    margin: 0px;
+    padding: 0px;
+}
+header .content-header .header-top
+{
+     background-color: #56a4fe;
+}
+header .content-header .logo
+{
+    padding: 15px;
+}
+header .content-header .logo h2 a
+{
+    color: white;
+    font-family: 'Times New Roman', Times, serif;
+}
+header .content-header .student 
+{
+    width: 100%;
+    text-align: right;
+}
+header .content-header .student span
+{
+    border: 1px solid white;
+    padding: 10px;
+    border-radius: 0px 0px 15px 15px;
+    background-color: white;
+    font-size: 13px;
+    color: blue;
+    font-weight: bold;
+}
+header .content-header .header-info
+{
+    background-color: #ecf3fa;
+}
+header .content-header .header-info
+{
+    padding: 20px 5px;
+}
+header .content-header .header-info p span.info1
+{
+    font-weight: bold;
+}
+ 
+
+/*main*/
+main .form-select
+{
+    padding: 20px 0px;
+}
+main .form-select label
+{
+    font-weight: bold;
+    font-size: 15px;
+    border-bottom: 2px solid #56a4fe;
+    padding-bottom: 5px;
+}
+main .table-score
+{
+    padding: 10px 0px;
+}
+
+/*footer*/
+footer .content-footer
+ {
+     margin-top: 20px;
+    background-color: #56a4fe;
+    padding: 15px 0px;
+ }
+ footer .content-footer h3
+ {
+     text-align: center;
+     color: white;
+     font-family: 'Times New Roman', Times, serif;
+ }
