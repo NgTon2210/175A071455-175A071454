@@ -6,4 +6,12 @@ document.addEventListener("DOMContentLoaded", function()
     {
         y[0].classList.toggle("togg_rp");
     }
+    
+    var a = document.getElementById("cl_news");
+    var b = document.getElementsByClassName("slide");
+    a.onclick = function()
+    {
+        b[0].classList.add("slide_none");
+    }
+ 
 }, false)
