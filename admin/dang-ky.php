@@ -13,19 +13,40 @@ if(isset($_POST['sbm']))
 	if($pass == $again_pass){
 		$passwordHash = password_hash($pass,PASSWORD_DEFAULT);
 		$code = (uniqid(rand()));
-	}
-	else{
-		echo 'kiem tra lai mat khau';
-	}
-	$sql = "INSERT INTO thanh_vien(email,password,ho_ten,so_cmt,so_dien_thoai,dia_chi,code) VALUES('$mail','$passwordHash','$name','$cmt','$sdt','$address','$code')";
-	if(queryStr($sql))
-	{
-		header('location:index.php');
+		
+		//check-mail
+		$sql_checkMail = "SELECT * FROM thanh_vien WHERE email = '$mail'";
+		$query_checkMail = mysqli_query($conn,$sql_checkMail);
+		$row = mysqli_fetch_assoc($query_checkMail);
+
+		if($row>0)
+		{
+			$error_mail="Thông tin có vấn đề";
+		}
+		else
+		{
+				$sql = "INSERT INTO thanh_vien(email,password,ho_ten,so_cmt,so_dien_thoai,dia_chi,code) VALUES('$mail','$passwordHash','$name','$cmt','$sdt','$address','$code')";
+			if(queryStr($sql))
+			{
+				include_once("sendmail.php");
+				header('location:index.php');
+			}
+			else{
+				$error="Thông tin có vấn đề";
+			}	
+		}
 	}
 	else{
 		$error="Thông tin có vấn đề";
 	}
 
+	//check mail
+
+
+	//check pass
+	
+	//insert
+	
 }
 ?>
 
@@ -52,6 +73,15 @@ if(isset($_POST['sbm']))
 					echo'
 						<div class="alert alert-primary" role="alert">
 						<strong>'.$error.'</strong>
+						</div>
+					';
+				}
+				?>
+				<?php
+				if (isset($error_mail)) {
+					echo'
+						<div class="alert alert-primary" role="alert">
+						<strong>'.$error_mail.'</strong>
 						</div>
 					';
 				}

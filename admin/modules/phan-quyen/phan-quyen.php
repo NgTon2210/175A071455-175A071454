@@ -1,5 +1,7 @@
 
+<?php 
 
+?>
     <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
         <div class="row">
             <ol class="breadcrumb">
@@ -26,6 +28,7 @@
                                         <tr>
                                             <th>STT</th>
                                             <th>Email</th>
+                                            <th>Họ Tên</th>
                                             <th>Chức Vụ</th>
                                         </tr>
                                     </thead>
@@ -33,6 +36,7 @@
                                         <tr>
                                             <td>1</td>
                                             <td>ton@gmail.com</td>
+                                            <td>Nguyễn Văn Tôn</td>
                                             <td>
                                                 <select class="form-control">
                                                     <option value="">Giảng Viên</option>
@@ -43,6 +47,7 @@
                                         <tr>
                                             <td>1</td>
                                             <td>ton@gmail.com</td>
+                                            <td>Trần Viết Kỷ Bê Tông</td>
                                             <td>
                                                 <select class="form-control">
                                                     <option value="">Giảng Viên</option>
@@ -53,6 +58,7 @@
                                         <tr>
                                             <td>1</td>
                                             <td>ton@gmail.com</td>
+                                            <td>Dương Tiến Nam Xà Beng</td>
                                             <td>
                                                 <select class="form-control">
                                                     <option value="">Giảng Viên</option>

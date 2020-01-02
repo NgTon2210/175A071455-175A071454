@@ -3,7 +3,7 @@ if(isset($_POST['sbm']))
 {
 	$mail = $_POST['email'];
 	$pass = $_POST['password'];
-	$sql = "SELECT * FROM thanh_vien WHERE email = '$mail'";
+	$sql = "SELECT * FROM thanh_vien WHERE email = '$mail' and trang_thai='1'";
 	$query = mysqli_query($conn,$sql);
 	$row = mysqli_fetch_assoc($query);
 	if($row>0)
