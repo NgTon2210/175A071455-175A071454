@@ -1,4 +1,9 @@
 <?php
+ if(!defined('SECURITY'))
+ {
+     die('ban khong the truy cap');
+ }
+ 
     include "../../../config/connect.php";
     include "../../../function/function.php";
     $level=$_GET['level'];

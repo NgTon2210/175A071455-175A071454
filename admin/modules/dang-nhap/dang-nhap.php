@@ -13,6 +13,7 @@ if(isset($_POST['sbm']))
 		{
 			$_SESSION['mail'] = $mail;
 			$_SESSION['level'] = $row['level'];
+			$_SESSION['id'] = $row['id'];
 			header('location:index.php');
 		}
 		else

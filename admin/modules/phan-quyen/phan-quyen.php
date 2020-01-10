@@ -1,5 +1,10 @@
 
 <?php 
+ if(!defined('SECURITY'))
+ {
+     die('ban khong the truy cap');
+ }
+ 
 $sql = "SELECT * FROM thanh_vien WHERE level != '1'";
 $query = mysqli_query($conn,$sql);
 

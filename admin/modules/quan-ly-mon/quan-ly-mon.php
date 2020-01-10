@@ -1,9 +1,13 @@
 <?php 
+ if(!defined('SECURITY'))
+ {
+     die('ban khong the truy cap');
+ }
 if(isset($_POST['sbm']))
 {
     $ten_mon = $_POST['ten_mon'];
     $id_nganh = $_POST['id_nganh'];
-    $sql = "INSERT INTO mon_hoc(ten_mon,qua_trinh,thi_cuoi) VALUES('$ten_mon',NULL,0)";
+    $sql = "INSERT INTO mon_hoc(ten_mon,qua_trinh) VALUES('$ten_mon',NULL)";
     queryStr($sql);
 
     $id_mon_hoc=mysqli_insert_id($conn);
@@ -13,6 +17,55 @@ if(isset($_POST['sbm']))
 
 
 }
+if(isset($_GET['page']))
+{
+    $page = $_GET['page'];
+}
+else
+{
+    $page = 1;
+}
+
+$rows_per_page = 5;
+$per_row = $page*$rows_per_page - $rows_per_page;
+$sql = "SELECT nganh_hoc_mon_hoc.mon_hoc_id, mon_hoc.id, mon_hoc.ten_mon, nganh_hoc.ten_nganh
+FROM nganh_hoc_mon_hoc
+INNER JOIN mon_hoc ON nganh_hoc_mon_hoc.mon_hoc_id = mon_hoc.id
+INNER JOIN nganh_hoc ON nganh_hoc_mon_hoc.nganh_hoc_id = nganh_hoc.id  ";
+$query_nganh = mysqli_query($conn,$sql);
+$total_rows = mysqli_num_rows($query_nganh);
+$total_pages = ceil($total_rows/$rows_per_page);
+$list_pages = "";
+$page_prev = $page - 1;
+if($page_prev<1)
+{
+    $page_prev = 1;
+}
+$list_pages .= '<li class="page-item"><a class="page-link" href="index.php?page_layout=quan_ly_mon&page='.$page_prev.'">&laquo;</a></li>';
+
+for($i = 1; $i<=$total_pages; $i++)
+{
+    if($i == $page)
+    {
+        $active = 'active';
+    }
+    else
+    {  
+        $active = '';
+    }
+    $list_pages .= '<li class="page-item '.$active.'"><a class="page-link" href="index.php?page_layout=quan_ly_mon&page='.$i.'">'.$i.'</a></li>';
+}
+
+
+$page_next = $page +1;
+if($page_next > $total_pages)
+{
+    $page_next = $total_pages;
+}
+$list_pages .= '<li class="page-item"><a class="page-link" href="index.php?page_layout=quan_ly_mon&page='.$page_next.'">&raquo;</a></li>';
+
+
+ 
 ?>
 <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
     <div class="row">
@@ -87,7 +140,7 @@ if(isset($_POST['sbm']))
                                     $sql = "SELECT nganh_hoc_mon_hoc.mon_hoc_id, mon_hoc.id, mon_hoc.ten_mon, nganh_hoc.ten_nganh
                                     FROM nganh_hoc_mon_hoc
                                     INNER JOIN mon_hoc ON nganh_hoc_mon_hoc.mon_hoc_id = mon_hoc.id
-                                    INNER JOIN nganh_hoc ON nganh_hoc_mon_hoc.nganh_hoc_id = nganh_hoc.id";
+                                    INNER JOIN nganh_hoc ON nganh_hoc_mon_hoc.nganh_hoc_id = nganh_hoc.id   ORDER BY id DESC LIMIT $per_row,$rows_per_page";
                                     $query = mysqli_query($conn,$sql);
                                     while($row = mysqli_fetch_assoc($query)) {?>
                                     <tr>
@@ -109,22 +162,7 @@ if(isset($_POST['sbm']))
                             <div style="text-align: right;">
 
                                 <ul class="pagination">
-                                    <li class="page-item disabled">
-                                        <a class="page-link" href="#" aria-label="Previous">
-                                            <span aria-hidden="true">&laquo;</span>
-                                            <span class="sr-only">Previous</span>
-                                        </a>
-                                    </li>
-                                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">4</a></li>
-                                    <li class="page-item">
-                                        <a class="page-link" href="#" aria-label="Next">
-                                            <span aria-hidden="true">&raquo;</span>
-                                            <span class="sr-only">Next</span>
-                                        </a>
-                                    </li>
+                                <?php echo $list_pages; ?>
                                 </ul>
 
                             </div>

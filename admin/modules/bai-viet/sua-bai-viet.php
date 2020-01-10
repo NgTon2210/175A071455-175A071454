@@ -1,4 +1,9 @@
 <?php
+  if(!defined('SECURITY'))
+  {
+      die('ban khong the truy cap');
+  }
+  
 ob_start();
 $id_baiviet = $_GET['id_baiviet'];
 $sql = "SELECT * FROM tin_tuc WHERE id='$id_baiviet'";

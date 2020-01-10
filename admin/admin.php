@@ -1,3 +1,9 @@
+<?php 
+ if(!defined('SECURITY'))
+ {
+     die('ban khong the truy cap');
+ }
+ ?>
 <!DOCTYPE html>
 <html>
 

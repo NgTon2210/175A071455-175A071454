@@ -1,4 +1,8 @@
 <?php
+  if(!defined('SECURITY'))
+  {
+      die('ban khong the truy cap');
+  }
 if (isset($_POST['sbm'])) {
     $news_title = $_POST['news_title'];
     $news_category = $_POST['news_category'];

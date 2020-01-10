@@ -1,4 +1,61 @@
 <?php 
+ if(!defined('SECURITY'))
+ {
+     die('ban khong the truy cap');
+ }
+
+ //phan trang
+ if(isset($_GET['page']))
+{
+    $page = $_GET['page'];
+}
+else
+{
+    $page = 1;
+}
+
+$rows_per_page = 3;
+$per_row = $page*$rows_per_page - $rows_per_page;
+$sql =   "SELECT lop_hoc.id, lop_hoc.ten_lop, mon_hoc.ten_mon, thanh_vien.ho_ten
+FROM lop_hoc
+INNER JOIN mon_hoc_lop_hoc ON mon_hoc_lop_hoc.lop_hoc_id = lop_hoc.id
+INNER JOIN mon_hoc ON mon_hoc_lop_hoc.mon_hoc_id = mon_hoc.id
+INNER JOIN lop_hoc_giang_vien ON lop_hoc_giang_vien.lop_hoc_id = lop_hoc.id
+INNER JOIN thanh_vien ON lop_hoc_giang_vien.giang_vien_id = thanh_vien.id";
+$query_nganh = mysqli_query($conn,$sql);
+$total_rows = mysqli_num_rows($query_nganh);
+$total_pages = ceil($total_rows/$rows_per_page);
+$list_pages = "";
+$page_prev = $page - 1;
+if($page_prev<1)
+{
+    $page_prev = 1;
+}
+$list_pages .= '<li class="page-item"><a class="page-link" href="index.php?page_layout=quan_ly_lop&page='.$page_prev.'">&laquo;</a></li>';
+
+for($i = 1; $i<=$total_pages; $i++)
+{
+    if($i == $page)
+    {
+        $active = 'active';
+    }
+    else
+    {  
+        $active = '';
+    }
+    $list_pages .= '<li class="page-item '.$active.'"><a class="page-link" href="index.php?page_layout=quan_ly_lop&page='.$i.'">'.$i.'</a></li>';
+}
+
+
+$page_next = $page +1;
+if($page_next > $total_pages)
+{
+    $page_next = $total_pages;
+}
+$list_pages .= '<li class="page-item"><a class="page-link" href="index.php?page_layout=quan_ly_lop&page='.$page_next.'">&raquo;</a></li>';
+//het phant trang
+
+ 
 if(isset($_POST['sbm']))
 {
     $ten_lop = $_POST['ten_lop'];
@@ -112,7 +169,7 @@ if(isset($_POST['sbm']))
                                     INNER JOIN mon_hoc_lop_hoc ON mon_hoc_lop_hoc.lop_hoc_id = lop_hoc.id
                                     INNER JOIN mon_hoc ON mon_hoc_lop_hoc.mon_hoc_id = mon_hoc.id
                                     INNER JOIN lop_hoc_giang_vien ON lop_hoc_giang_vien.lop_hoc_id = lop_hoc.id
-                                    INNER JOIN thanh_vien ON lop_hoc_giang_vien.giang_vien_id = thanh_vien.id";
+                                    INNER JOIN thanh_vien ON lop_hoc_giang_vien.giang_vien_id = thanh_vien.id  ORDER BY id DESC LIMIT $per_row,$rows_per_page";
                                     $query= mysqli_query($conn,$sql);
                                     while($row = mysqli_fetch_assoc($query)) {?>
                                         <tr>
@@ -134,22 +191,7 @@ if(isset($_POST['sbm']))
                                 <div style="text-align: right;">
 
                                     <ul class="pagination">
-                                        <li class="page-item disabled">
-                                            <a class="page-link" href="#" aria-label="Previous">
-                                                <span aria-hidden="true">&laquo;</span>
-                                                <span class="sr-only">Previous</span>
-                                            </a>
-                                        </li>
-                                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">4</a></li>
-                                        <li class="page-item">
-                                            <a class="page-link" href="#" aria-label="Next">
-                                                <span aria-hidden="true">&raquo;</span>
-                                                <span class="sr-only">Next</span>
-                                            </a>
-                                        </li>
+                                    <?php echo $list_pages; ?>
                                     </ul>
 
                                 </div>

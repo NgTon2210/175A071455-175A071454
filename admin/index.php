@@ -1,6 +1,8 @@
 <?php
+define('SECURITY',TRUE);
 ob_start();
 session_start();
+
 include_once('../config/connect.php');
 include_once('../function/function.php');
 

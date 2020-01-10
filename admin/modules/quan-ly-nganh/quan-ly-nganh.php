@@ -1,5 +1,10 @@
 
 <?php
+ if(!defined('SECURITY'))
+ {
+     die('ban khong the truy cap');
+ }
+ 
 if(isset($_POST['sbm']))
 {
     $ten_nganh = $_POST['ten_nganh'];
@@ -132,6 +137,7 @@ $list_pages .= '<li class="page-item"><a class="page-link" href="index.php?page_
                                           
                                             <th>Mã Ngành</th>
                                             <th>Tên Ngành</th>
+                                            <th>Các môn</th>
                                             <!-- <th>Môn</th> -->
                                             <th>Chức Năng</th>
                                         </tr>
@@ -139,7 +145,9 @@ $list_pages .= '<li class="page-item"><a class="page-link" href="index.php?page_
                                     <tbody>
                                     
                                         <?php
-                                        $sql = "SELECT * FROM nganh_hoc ORDER BY id DESC LIMIT $per_row,$rows_per_page";
+                                        $sql = "SELECT *
+                                        FROM nganh_hoc
+                                        ORDER BY id DESC LIMIT $per_row,$rows_per_page";
                                         // $sql = "SELECT nganh_hoc_mon_hoc.nganh_hoc_id, nganh_hoc.id, nganh_hoc.ten_nganh, mon_hoc.ten_mon
                                         // FROM nganh_hoc_mon_hoc
                                         // INNER JOIN nganh_hoc ON nganh_hoc_mon_hoc.nganh_hoc_id = nganh_hoc.id
@@ -151,6 +159,26 @@ $list_pages .= '<li class="page-item"><a class="page-link" href="index.php?page_
                                            
                                             <td><?php echo $row['id'] ?></td>
                                             <td><?php echo $row['ten_nganh'] ?></td>
+                                            <?php 
+                                                $sql="
+                                                SELECT ten_mon
+                                                FROM
+                                                    nganh_hoc 
+                                                    INNER JOIN nganh_hoc_mon_hoc ON nganh_hoc.id = nganh_hoc_mon_hoc.nganh_hoc_id
+                                                    INNER JOIN mon_hoc ON mon_hoc.id = nganh_hoc_mon_hoc.mon_hoc_id
+                                                
+                                                WHERE nganh_hoc.id = ".$row['id']."
+                                                ";
+                                                $data=getData($sql)
+                                            ?>
+                                            <td>
+                                            <?php 
+                                            foreach($data as $value)
+                                            {
+                                                echo $value['ten_mon'].',';
+                                            }
+                                            ?>
+                                            </td>
                                             <td>
                                                 <a class="btn btn-default btn-circle margin" href="modules/quan-ly-nganh/xoa-nganh.php?id_nganh=<?php echo $row['id']; ?>">
                                                 <span class="fa fa-trash"></span></a></td>

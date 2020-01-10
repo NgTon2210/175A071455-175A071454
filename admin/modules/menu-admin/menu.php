@@ -1,4 +1,8 @@
 <?php
+ if(!defined('SECURITY'))
+ {
+     die('ban khong the truy cap');
+ }
 //phan quyen 
 $level = $_SESSION['level'];
 $mail = $_SESSION['mail'];
@@ -35,15 +39,24 @@ $mail = $_SESSION['mail'];
                     Quản Lý Sinh Viên <span data-toggle="collapse" href="" class="icon pull-right"><em class="fa fa-plus"></em></span>
                 </a>
                 <ul class="children collapse" id="sub-item-1">
-                    <li><a class="" href="index.php?page_layout=danh_sach_sinh_vien">
-                            <span class="fa fa-arrow-right">&nbsp;</span> Lớp 59TH2
+                    <?php 
+                    $sql="SELECT lop_hoc.id,lop_hoc.ten_lop
+                    FROM
+                        thanh_vien 
+                        INNER JOIN lop_hoc_giang_vien ON thanh_vien.id = lop_hoc_giang_vien.giang_vien_id
+                        INNER JOIN lop_hoc ON lop_hoc.id = lop_hoc_giang_vien.lop_hoc_id
+                    
+                    WHERE thanh_vien.id = ".$_SESSION['id']."
+                    ";
+                    $data=getData($sql);
+                    foreach($data as $value)
+                    {
+                    ?>
+                    <li><a class="" href="index.php?page_layout=danh_sach_sinh_vien&id_lop=<?php echo $value['id'] ?>">
+                            <span class="fa fa-arrow-right">&nbsp;</span> Lớp <?php echo $value['ten_lop'] ?>
                         </a></li>
-                    <li><a class="" href="#">
-                            <span class="fa fa-arrow-right">&nbsp;</span> Lớp 59TH3
-                        </a></li>
-                    <li><a class="" href="#">
-                            <span class="fa fa-arrow-right">&nbsp;</span> Lớp 59TH4
-                        </a></li>
+                    <?php } ?>
+                 
                 </ul>
             </li>
 
@@ -51,15 +64,13 @@ $mail = $_SESSION['mail'];
                     Quản Lý Điểm <span data-toggle="collapse" href="#sub-item-2" class="icon pull-right"><em class="fa fa-plus"></em></span>
                 </a>
                 <ul class="children collapse" id="sub-item-2">
+                    <?php    foreach($data as $value)
+                    { ?>
                     <li><a class="" href="index.php?page_layout=quan_ly_diem">
-                            <span class="fa fa-arrow-right">&nbsp;</span> Lớp 59TH2
+                            <span class="fa fa-arrow-right">&nbsp;</span> Lớp <?php echo $value['ten_lop'] ?>
                         </a></li>
-                    <li><a class="" href="#">
-                            <span class="fa fa-arrow-right">&nbsp;</span> Lớp 59TH3
-                        </a></li>
-                    <li><a class="" href="#">
-                            <span class="fa fa-arrow-right">&nbsp;</span> Lớp 59TH4
-                        </a></li>
+                    <?php } ?>
+                    <li>
                 </ul>
             </li>
 
@@ -76,7 +87,7 @@ $mail = $_SESSION['mail'];
                 <ul class="children collapse" id="sub-item-3">
                     <?php
                     foreach ($data as $value) { ?>
-                        <li><a class="" href="index.php?page_layout=thiet_lap_trong_so">
+                        <li><a class="" href="index.php?page_layout=thiet_lap_trong_so&id_mon=<?php echo $value['id']; ?>">
                                 <span class="fa fa-arrow-right">&nbsp;</span> <?php echo $value['ten_mon']; ?>
                             </a></li>
                     <?php } ?>

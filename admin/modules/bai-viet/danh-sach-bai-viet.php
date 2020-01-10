@@ -1,4 +1,8 @@
 <?php 
+  if(!defined('SECURITY'))
+  {
+      die('ban khong the truy cap');
+  }
 $sql = "SELECT * FROM tin_tuc";
 $data = getData($sql);
 
