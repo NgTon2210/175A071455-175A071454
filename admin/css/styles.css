@@ -1512,3 +1512,7 @@ div.profile-sidebar {
 div.profile-sidebar>.clear {
   margin-bottom: 10px;
 }
+.upload-image img{
+  width: 281px;
+  height: 196px;
+}

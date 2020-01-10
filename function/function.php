@@ -8,7 +8,7 @@ function getData($str){
     {
         $data[] = $row;
     }
-    print_r($data);
+    return $data;
 
 
 }
@@ -25,3 +25,4 @@ function queryStr($str){
         return false;
     }
 }
+

@@ -21,7 +21,7 @@
                         <div class="form-group">
                             <label class="col-md-2 control-label">Điểm quá trình</label>
                             <div class="col-md-10">
-                                <select class="form-control">
+                                <select onchange="getPoint()" id="trong_so1" class="form-control">
                                     <option value="30">30 %</option>
                                     <option value="40">40 %</option>
                                     <option value="50">50 %</option>
@@ -31,7 +31,7 @@
                         <div class="form-group">
                             <label class="col-md-2 control-label">Điểm thi</label>
                             <div class="col-md-10">
-                                <input class="form-control" type="text" name="readonly" readonly="" value="60 %">
+                                <input id="trong_so2" class="form-control" type="text" name="readonly" readonly="" value="70 %">
                             </div>
                         </div>
                       
@@ -48,3 +48,11 @@
 
     </div>
     <!--/.main-->
+    <script>
+        function getPoint(){
+            let trong_so1=document.getElementById('trong_so1').value;
+            trong_so2=100-trong_so1;
+            document.getElementById('trong_so2').value=trong_so2+' %';
+        }
+        
+    </script>

@@ -1,7 +1,10 @@
 <?php
+ob_start();
 session_start();
 include_once('../config/connect.php');
-if(isset($_SESSION['mail']) && isset($_SESSION['pass']))
+include_once('../function/function.php');
+
+if(isset($_SESSION['mail']))
 {
     include_once('admin.php');
 }

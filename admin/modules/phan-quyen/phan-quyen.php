@@ -1,5 +1,51 @@
 
 <?php 
+$sql = "SELECT * FROM thanh_vien WHERE level != '1'";
+$query = mysqli_query($conn,$sql);
+
+//phan trang
+if(isset($_GET['page']))
+{
+    $page = $_GET['page'];
+}
+else
+{
+    $page = 1;
+}
+
+$rows_per_page = 2; //sô bản ghi trên 1 trang
+$per_row = $page*$rows_per_page - $rows_per_page;
+$total_rows = mysqli_num_rows($query);
+$total_pages = ceil($total_rows/$rows_per_page);
+$list_pages = "";
+$page_prev = $page - 1;
+if($page_prev<1)
+{
+    $page_prev = 1;
+}
+$list_pages .= '<li class="page-item"><a class="page-link" href="index.php?page_layout=phan_quyen&page='.$page_prev.'">&laquo;</a></li>';
+
+for($i = 1; $i<=$total_pages; $i++)
+{
+    if($i == $page)
+    {
+        $active = 'active';
+    }
+    else
+    {  
+        $active = '';
+    }
+    $list_pages .= '<li class="page-item '.$active.'"><a class="page-link" href="index.php?page_layout=phan_quyen&page='.$i.'">'.$i.'</a></li>';
+}
+
+
+$page_next = $page +1;
+if($page_next > $total_pages)
+{
+    $page_next = $total_pages;
+}
+$list_pages .= '<li class="page-item"><a class="page-link" href="index.php?page_layout=phan_quyen&page='.$page_next.'">&raquo;</a></li>';
+
 
 ?>
     <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
@@ -33,39 +79,32 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        <?php
+                                        $sql = "SELECT * FROM thanh_vien WHERE level != '1' ORDER BY level ASC LIMIT $per_row,$rows_per_page";
+                                        $query = mysqli_query($conn,$sql);
+                                         while($row = mysqli_fetch_assoc($query)){ ?>
                                         <tr>
-                                            <td>1</td>
-                                            <td>ton@gmail.com</td>
-                                            <td>Nguyễn Văn Tôn</td>
+                                            <td><?php echo $row['id'];?></td>
+                                            <td><?php echo $row['email'];?></td>
+                                            <td><?php echo $row['ho_ten'];?></td>
                                             <td>
-                                                <select class="form-control">
-                                                    <option value="">Giảng Viên</option>
-                                                    <option value="">quản lý</option>
+                                               
+                                                <form method="POST">
+                                                <select data-id="<?php echo $row['id']; ?>" class="form-control phan_quyen" name="quyen">
 
-                                                </select></td>
-                                        </tr>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>ton@gmail.com</td>
-                                            <td>Trần Viết Kỷ Bê Tông</td>
-                                            <td>
-                                                <select class="form-control">
-                                                    <option value="">Giảng Viên</option>
-                                                    <option value="">quản lý</option>
+                                                    <option  value="2" <?php if($row['level']==2){echo 'selected="selected"';} ?>>Quan ly</option>
+                                                    <option  value="4" <?php if($row['level']==4){echo 'selected="selected"';} ?>>Hoc ISnh</option>
+                                                    <option  value="3" <?php if($row['level']==3){echo 'selected="selected"';} ?>>Giao Vien</option>
 
-                                                </select></td>
+                                                    
+                                                </select>
+                                                </form>
+                                             
+                                               
+                                             </td>
                                         </tr>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>ton@gmail.com</td>
-                                            <td>Dương Tiến Nam Xà Beng</td>
-                                            <td>
-                                                <select class="form-control">
-                                                    <option value="">Giảng Viên</option>
-                                                    <option value="">quản lý</option>
-
-                                                </select></td>
-                                        </tr>
+                                        <?php } ?>
+                                      
 
 
                                     </tbody>
@@ -73,22 +112,7 @@
                                 <div style="text-align: right;">
 
                                     <ul class="pagination">
-                                        <li class="page-item disabled">
-                                            <a class="page-link" href="#" aria-label="Previous">
-                                                <span aria-hidden="true">&laquo;</span>
-                                                <span class="sr-only">Previous</span>
-                                            </a>
-                                        </li>
-                                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">4</a></li>
-                                        <li class="page-item">
-                                            <a class="page-link" href="#" aria-label="Next">
-                                                <span aria-hidden="true">&raquo;</span>
-                                                <span class="sr-only">Next</span>
-                                            </a>
-                                        </li>
+                                       <?php echo $list_pages; ?>
                                     </ul>
 
                                 </div>

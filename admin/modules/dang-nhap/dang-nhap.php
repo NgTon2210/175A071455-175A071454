@@ -12,7 +12,7 @@ if(isset($_POST['sbm']))
 		if($test)
 		{
 			$_SESSION['mail'] = $mail;
-			$_SESSION['pass'] = $pass;
+			$_SESSION['level'] = $row['level'];
 			header('location:index.php');
 		}
 		else
