@@ -148,10 +148,7 @@ $list_pages .= '<li class="page-item"><a class="page-link" href="index.php?page_
                                         $sql = "SELECT *
                                         FROM nganh_hoc
                                         ORDER BY id DESC LIMIT $per_row,$rows_per_page";
-                                        // $sql = "SELECT nganh_hoc_mon_hoc.nganh_hoc_id, nganh_hoc.id, nganh_hoc.ten_nganh, mon_hoc.ten_mon
-                                        // FROM nganh_hoc_mon_hoc
-                                        // INNER JOIN nganh_hoc ON nganh_hoc_mon_hoc.nganh_hoc_id = nganh_hoc.id
-                                        // INNER JOIN mon_hoc ON nganh_hoc_mon_hoc.mon_hoc_id = mon_hoc.id";
+                
                                         $query = mysqli_query($conn,$sql);
                                          while($row = mysqli_fetch_assoc($query)) {?>
                                 

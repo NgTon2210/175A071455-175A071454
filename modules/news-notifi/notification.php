@@ -1,4 +1,52 @@
-
+<?php
+ if(isset($_GET['page']))
+ {
+     $page = $_GET['page'];
+ }
+ else
+ {
+     $page = 1;
+ }
+ 
+ $rows_per_page = 3;
+ $per_row = $page*$rows_per_page - $rows_per_page;
+ $sql = "SELECT * FROM tin_tuc WHERE danh_muc=1";
+ $query_nganh = mysqli_query($conn,$sql);
+ $total_rows = mysqli_num_rows($query_nganh);
+ $total_pages = ceil($total_rows/$rows_per_page);
+ $list_pages = "";
+ $page_prev = $page - 1;
+ if($page_prev<1)
+ {
+     $page_prev = 1;
+ }
+ $list_pages .= '<li class="page-item"><a class="page-link" href="index.php?page_layout=news_notify&page='.$page_prev.'">&laquo;</a></li>';
+ 
+ for($i = 1; $i<=$total_pages; $i++)
+ {
+     if($i == $page)
+     {
+         $active = 'active';
+     }
+     else
+     {  
+         $active = '';
+     }
+     $list_pages .= '<li class="page-item '.$active.'"><a class="page-link" href="index.php?page_layout=news_notify&page='.$i.'">'.$i.'</a></li>';
+ }
+ 
+ 
+ $page_next = $page +1;
+ if($page_next > $total_pages)
+ {
+     $page_next = $total_pages;
+ }
+ $list_pages .= '<li class="page-item"><a class="page-link" href="index.php?page_layout=news_notify&page='.$page_next.'">&raquo;</a></li>';
+ 
+ 
+  
+ ?>
+?>
         <div class="news-notification">
             <div class="location">
                 <div class="container"><span>Tin Tức Thông Báo > Thông báo</span></div>
@@ -21,89 +69,30 @@
                         <div class="col-lg-9">
                             <div class="list-news">
                                 <h3>Thông báo</h3>
-                                <div class="news1">
+                              <?php
+                                  $sql = "SELECT * FROM tin_tuc WHERE danh_muc= 1  ORDER BY id DESC LIMIT $per_row,$rows_per_page";
+                                  $query = mysqli_query($conn,$sql);
+                                  while($row = mysqli_fetch_assoc($query))
+                               {?>
+                                 <div class="news1">
                                     <div class="img-news">
                                         <a href="">
-                                            <img src="img/Capture.PNG" alt="">
+                                            <img style="width: 200px; height:126px;"src="uploaded/<?php echo $row['ten_anh']; ?>" alt="">
                                         </a>
                                     </div>
                                     <div class="title-news">
-                                        <h5><a href="">Đại học Thủy lợi giành 8 giải thưởng Đồ án xuất sắc - Giải Loa
-                                                thành năm 2019</a></h5>
-                                        <p class="p-content">Trong tổng số 13 đồ án tham gia giải thưởng Loa Thành năm
-                                            nay, Trường Đại học Thủy lợi có 8 đồ án đạt giải. Đồ án "Nghiên cứu mô hình
-                                            dự báo lũ sông Kone" của Trần Thị Tuyết 56G do PGS.TS Ngô Lê An...</p>
-                                        <p class="p-view"><a href="">>Xem chi tiết</a></p>
+                                        <h5><a href="index.php?page_layout=detail&id_baiviet=<?php echo $row['id']; ?>"> <?php echo $row['tieu_de']; ?>
+                                                </a></h5>
+                                        <p class="p-content"><?php echo $row['tieu_de']; ?></p>
+                                        <p class="p-view"><a href="index.php?page_layout=detail&id_baiviet=<?php echo $row['id']; ?>">>Xem chi tiết</a></p>
                                     </div>
                                 </div>
-                                <div class="news1">
-                                    <div class="img-news">
-                                        <a href="">
-                                            <img src="img/Capture.PNG" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="title-news">
-                                        <h5><a href="">Đại học Thủy lợi giành 8 giải thưởng Đồ án xuất sắc - Giải Loa
-                                                thành năm 2019</a></h5>
-                                        <p class="p-content">Trong tổng số 13 đồ án tham gia giải thưởng Loa Thành năm
-                                            nay, Trường Đại học Thủy lợi có 8 đồ án đạt giải. Đồ án "Nghiên cứu mô hình
-                                            dự báo lũ sông Kone" của Trần Thị Tuyết 56G do PGS.TS Ngô Lê An...</p>
-                                        <p class="p-view"><a href="">>Xem chi tiết</a></p>
-                                    </div>
-                                </div>
-                                <div class="news1">
-                                    <div class="img-news">
-                                        <a href="">
-                                            <img src="img/Capture.PNG" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="title-news">
-                                        <h5><a href="">Đại học Thủy lợi giành 8 giải thưởng Đồ án xuất sắc - Giải Loa
-                                                thành năm 2019</a></h5>
-                                        <p class="p-content">Trong tổng số 13 đồ án tham gia giải thưởng Loa Thành năm
-                                            nay, Trường Đại học Thủy lợi có 8 đồ án đạt giải. Đồ án "Nghiên cứu mô hình
-                                            dự báo lũ sông Kone" của Trần Thị Tuyết 56G do PGS.TS Ngô Lê An...</p>
-                                        <p class="p-view"><a href="">>Xem chi tiết</a></p>
-                                    </div>
-                                </div>
-                                <div class="news1">
-                                    <div class="img-news">
-                                        <a href="">
-                                            <img src="img/Capture.PNG" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="title-news">
-                                        <h5><a href="">Đại học Thủy lợi giành 8 giải thưởng Đồ án xuất sắc - Giải Loa
-                                                thành năm 2019</a></h5>
-                                        <p class="p-content">Trong tổng số 13 đồ án tham gia giải thưởng Loa Thành năm
-                                            nay, Trường Đại học Thủy lợi có 8 đồ án đạt giải. Đồ án "Nghiên cứu mô hình
-                                            dự báo lũ sông Kone" của Trần Thị Tuyết 56G do PGS.TS Ngô Lê An...</p>
-                                        <p class="p-view text-right><a href="" class="">>Xem chi tiết</a></p>
-                                    </div>
-                                </div>
-                                <div class="news1">
-                                    <div class="img-news">
-                                        <a href="">
-                                            <img src="img/Capture.PNG" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="title-news">
-                                        <h5><a href="">Đại học Thủy lợi giành 8 giải thưởng Đồ án xuất sắc - Giải Loa
-                                                thành năm 2019</a></h5>
-                                        <p class="p-content">Trong tổng số 13 đồ án tham gia giải thưởng Loa Thành năm
-                                            nay, Trường Đại học Thủy lợi có 8 đồ án đạt giải. Đồ án "Nghiên cứu mô hình
-                                            dự báo lũ sông Kone" của Trần Thị Tuyết 56G do PGS.TS Ngô Lê An...</p>
-                                        <p class="p-view"><a href="">>Xem chi tiết</a></p>
-                                    </div>
-                                </div>
+                              <?php } ?>
+                               
                             </div>
                             <div id="pagination" class="text-right">
                                 <ul class="pagination">
-                                    <li class="page-item"><a class="page-link" href="#">Trang trước</a></li>
-                                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">Trang sau</a></li>
+                                    <?php echo $list_pages; ?>
                                 </ul> 
                             </div>     
                         </div>

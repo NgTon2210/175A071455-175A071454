@@ -23,7 +23,7 @@
                                         <div class="cmt"><label for="">Cmt: </label>  <input type="text"><br></div>
                                         <div class="pass"><label for="">Pass: </label>  <input type="password"><br></div>
                                         <button type="submit" class="btn btn-primary"> Login</button>
-                                        <button type="submit" class="btn btn-info"> Register</button>
+                                        <button type="submit" class="btn btn-info"> <a href="admin/dang-ky.php">Register</a></button>
                                     </form>
                                   </div>
                                   

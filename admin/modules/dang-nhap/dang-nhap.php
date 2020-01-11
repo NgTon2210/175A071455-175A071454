@@ -18,7 +18,7 @@ if(isset($_POST['sbm']))
 		}
 		else
 		{
-			echo 'dang nhap sai';
+			$err = '<div class="alert alert-danger">Đăng nhập sai</div>';
 		}
 	}
 }
@@ -43,6 +43,7 @@ if(isset($_POST['sbm']))
 		<div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-4">
 			<div class="login-panel panel panel-default">
 				<div class="panel-heading" style="text-align: center;">Đăng Nhập</div>
+				<?php if(isset($err)) echo $err; ?>
 				<div class="panel-body">
 					<form  method="POST">
 						<fieldset>
